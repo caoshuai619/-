@@ -1,0 +1,65 @@
+//循环链表求解简单  设置一个头尾相接的循环单链表  
+//开始查找，找到了那个结点，就删除结点，知道最后链表只有一个结点为止，即最后指向自己，程序结束，输出打印
+
+struct Node {
+	int data;
+	Node* next;
+};
+Node* CreateLinkedList(Node* head) {
+	//构造循环链表
+	int i = 1;
+	Node* p = head, *q=p;
+	while (i <= 10)
+	{
+		if (i == 1) {
+			p = new Node;
+			p->data = i;
+			p->next = NULL;
+			head = p;
+			q = head;
+			
+
+		}
+		else {
+			p = new Node;
+			p->data = i;
+			p->next = NULL;
+			q->next = p;
+			q = p;
+		
+		}
+		i++;
+		q->next = head;
+	}
+	return head;
+}
+
+Node* Delete(Node* head, int n) {
+	Node* p = head;
+	for (int i = 0; i < n - 2; i++) {
+		p = p->next;
+	}
+	
+	Node* next = p->next;
+	p->next = next->next;
+	delete next;
+	next = NULL;
+	Node* current = p->next;
+	return current;
+}
+
+void YueSeFu(Node* head) {
+	int  n;
+	cout << "请输入步长:";
+	cin >> n;
+	Node* p = head;
+	while (p->next != p)
+	{
+		p = Delete(p, n);
+
+	}
+	cout << "res=" << p->data << endl;
+	
+	
+}
+
