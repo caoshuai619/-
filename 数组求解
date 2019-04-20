@@ -1,0 +1,42 @@
+//设置一个数组，初始化数组，1--代表还在桌子上 0---代表已经出局
+
+void YueSeFuHuan() {
+	vector<int> a(10);
+	//先赋值 1代表没出局，0代表出局
+	for (int i = 0; i < 10; i++) {
+		a[i] = 1;
+	}
+	int count=0, n,m=0;
+	cout << "请输入步长:";
+	cin >> n;
+	int i, res;
+	while (count<a.size()-1) //代表数组中已经就剩下最后一个为1的元素了
+	{
+		i = 0;
+		
+		for (; i < 10; i++) {
+			if (a[i] == 0) {
+				continue;
+			}
+			m++;//步长计数
+			
+			if (m == n) {
+				
+				a[i] = 0;
+				m = 0;
+				count++;   //没设置一个0 ，就把count+1
+				
+			}
+		}
+		
+	}
+	for (int i = 0; i < 10; i++) {
+		if (a[i] == 1) {
+			res = i;
+		}
+	}
+	cout << "res=" <<res << endl;
+
+	
+
+}
